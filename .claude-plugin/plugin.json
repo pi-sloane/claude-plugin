@@ -1,0 +1,23 @@
+{
+  "name": "pi-security",
+  "displayName": "Pi Security",
+  "version": "0.1.0",
+  "description": "Pi Security workflows for Claude Code and Cowork: investigate findings, review security posture, fetch remediation guidance, start design reviews, submit Markdown reports, and query secure-development playbooks through Pi's hosted MCP server.",
+  "author": {
+    "name": "Pi Security",
+    "email": "contact@pi.security",
+    "url": "https://pi.security"
+  },
+  "homepage": "https://pi.security",
+  "repository": "https://github.com/pi-sloane/claude-plugin",
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "appsec",
+    "findings",
+    "remediation",
+    "threat-model",
+    "design-review",
+    "mcp"
+  ]
+}
