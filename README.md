@@ -2,6 +2,8 @@
 
 Teaches Claude how to work with [Pi Security](https://pi.security) through Pi's hosted MCP server. The plugin's entire functional surface is a manifest, one remote connector entry pointing at `https://mcp.pi.security/mcp`, and six skills. It bundles no local server, executable, hook, agent, monitor, or filesystem bridge, and it ships no credentials.
 
+![Pi Security logo](assets/pi-favicon-light.svg)
+
 Everything the plugin does is inspectable in this repository. Pi tool output is treated as evidence about your tenant's security state - never as instructions that outrank yours.
 
 ## Supported surfaces
