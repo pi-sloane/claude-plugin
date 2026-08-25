@@ -52,7 +52,9 @@ Skills are invoked as `/pi-security:<skill>`, or Claude picks them automatically
 | `remediation-guidance` | Fetch existing finding/package remediation plans; optionally prepare a missing package plan | `pi_remediation_plan_fetch`, `pi_package_remediation_plan_fetch`; write: `pi_package_remediation_plan_prepare` | Only `prepare`, after confirmation |
 | `security-design-review` | Start a design review from a Confluence/Notion URL or inline Markdown | write: `pi_design_review_url_create`, `pi_design_review_markdown_create` | Yes, after confirmation |
 | `ingest-markdown-report` | Submit a security report supplied as inline Markdown | write: `pi_report_markdown_upload` | Yes, after confirmation |
-| `secure-development-playbook` | Repo-specific secure-development guidance; optional targeted feedback | `pi_playbook_task_query`, `pi_knowledgebase_query`; write: `pi_playbook_comment_create` | Only feedback, after confirmation |
+| `secure-development-playbook` | Repo-specific secure-development guidance; optional targeted feedback | `pi_playbook_task_query`; optional threat-model context: `pi_knowledgebase_query`; write: `pi_playbook_comment_create` | Only feedback, after confirmation |
+
+For a stable engineering task, the secure-development workflow queries the Pi playbook exactly once. If its coverage is missing or only adjacent, Claude surfaces the gap and continues from the user's instructions and current repository evidence instead of retrying, rephrasing, or falling back to generic tenant knowledge. A generic knowledge lookup is reserved for genuinely necessary threat-model context and is limited to one short non-sentence query.
 
 Example prompts:
 

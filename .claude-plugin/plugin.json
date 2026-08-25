@@ -1,7 +1,7 @@
 {
   "name": "pi-security",
   "displayName": "Pi Security",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Pi Security workflows for Claude Code and Cowork: investigate findings, review security posture, fetch remediation guidance, start design reviews, submit Markdown reports, and query secure-development playbooks through Pi's hosted MCP server.",
   "author": {
     "name": "Pi Security",
