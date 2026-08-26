@@ -11,7 +11,7 @@
       "source": "./",
       "displayName": "Pi Security",
       "description": "Pi Security workflows for Claude Code and Cowork: investigate findings, review security posture, fetch remediation guidance, start design reviews, submit Markdown reports, and query secure-development playbooks through Pi's hosted MCP server.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Pi Security",
         "email": "contact@pi.security"

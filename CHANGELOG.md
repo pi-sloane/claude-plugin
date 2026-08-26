@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+- Bound secure-development guidance to one playbook lookup for a stable task.
+- Surface missing or adjacent playbook coverage and continue from current repository evidence without retrying, rephrasing, or using generic tenant knowledge as a fallback.
+- Reserve one short generic lookup for genuinely necessary threat-model context.
+
 ## 0.1.0
 
 Initial release.
