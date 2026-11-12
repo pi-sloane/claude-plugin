@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- `security-design-review` reads a review's gaps and records a verdict on each (accept fix, accepted risk, false positive, or reopen) with `pi_design_review_gap_update_status`, after explicit confirmation.
+
 ## 0.1.1
 
 - Bound secure-development guidance to one playbook lookup for a stable task.

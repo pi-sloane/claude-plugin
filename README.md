@@ -50,7 +50,7 @@ Skills are invoked as `/pi-security:<skill>`, or Claude picks them automatically
 | `investigate-finding` | List, locate, explain, summarize, or compare findings | `pi_findings_list`, `pi_finding_get`, optionally `pi_remediation_plan_fetch` | No |
 | `review-security-posture` | Combine threat-model context with Code Gatekeeper PR/issue posture | `pi_threat_model_apps_list`, `pi_threat_model_app_get`, `pi_threat_model_app_section_get`, `pi_gatekeeper_prs_list`, `pi_gatekeeper_issues_list`, `pi_gatekeeper_pr_get`, `pi_gatekeeper_issue_get` | No |
 | `remediation-guidance` | Fetch existing finding/package remediation plans; optionally prepare a missing package plan | `pi_remediation_plan_fetch`, `pi_package_remediation_plan_fetch`; write: `pi_package_remediation_plan_prepare` | Only `prepare`, after confirmation |
-| `security-design-review` | Start a design review from a Confluence/Notion URL or inline Markdown | write: `pi_design_review_url_create`, `pi_design_review_markdown_create` | Yes, after confirmation |
+| `security-design-review` | Start a design review from a Confluence/Notion URL or inline Markdown; read its gaps and record a verdict on each | `pi_design_reviews_list`, `pi_design_review_get`; write: `pi_design_review_url_create`, `pi_design_review_markdown_create`, `pi_design_review_gap_update_status` | Yes, after confirmation |
 | `ingest-markdown-report` | Submit a security report supplied as inline Markdown | write: `pi_report_markdown_upload` | Yes, after confirmation |
 | `secure-development-playbook` | Repo-specific secure-development guidance; optional targeted feedback | `pi_playbook_task_query`; optional threat-model context: `pi_knowledgebase_query`; write: `pi_playbook_comment_create` | Only feedback, after confirmation |
 
@@ -62,12 +62,13 @@ Example prompts:
 - "What does our threat model say about the payments service, and are there open Gatekeeper issues touching it?"
 - "Is there a remediation plan for lodash in the storefront repo? If not, have Pi prepare one."
 - "Start a Pi design review of https://example.atlassian.net/wiki/spaces/ENG/pages/123 (a synthetic URL)."
+- "Accept the fix on the first gap of that design review and accept the risk on the second."
 - "Submit this pentest summary to Pi as pentest-q3.md."
 - "How should I add a new webhook endpoint in this repo according to our playbook?"
 
 ## Write actions and confirmation
 
-Five tools change state in Pi: `pi_package_remediation_plan_prepare`, `pi_design_review_url_create`, `pi_design_review_markdown_create`, `pi_report_markdown_upload`, and `pi_playbook_comment_create`. Every skill that uses one follows the same contract: validate inputs, show the exact target and a concise argument summary, explain what Pi will do, require an explicit yes in the current turn, call the tool once, report exactly the state Pi returned, and never retry automatically after an ambiguous failure. Pi starts hosted work (reviews, ingestion, plan generation); it never edits your local code.
+Six tools change state in Pi: `pi_package_remediation_plan_prepare`, `pi_design_review_url_create`, `pi_design_review_markdown_create`, `pi_design_review_gap_update_status`, `pi_report_markdown_upload`, and `pi_playbook_comment_create`. Every skill that uses one follows the same contract: validate inputs, show the exact target and a concise argument summary, explain what Pi will do, require an explicit yes in the current turn, call the tool once, report exactly the state Pi returned, and never retry automatically after an ambiguous failure. Pi starts hosted work (reviews, ingestion, plan generation) and records design-review verdicts; it never edits your local code.
 
 ## Identifiers Pi understands
 
@@ -76,6 +77,7 @@ Five tools change state in Pi: `pi_package_remediation_plan_prepare`, `pi_design
 - Repositories/codebases: slug or ID (stated by you, never inferred).
 - Packages: package reference such as name@version, optionally with vulnerability ID and ecosystem.
 - Gatekeeper PR records and issues: UUIDs from list results.
+- Design reviews and their gaps: UUIDs from `pi_design_reviews_list` and `pi_design_review_get` results.
 
 ## Markdown and attachment boundary
 
